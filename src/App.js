@@ -4,28 +4,26 @@ import {useEffect} from "react";
 
 
 function App() {
+    const todos = useSelector(state => state.todos);
+    const loading = useSelector(state => state.loading)
+    const dispatch = useDispatch();
 
-  const todos = useSelector(state => state.todos);
-  const loading = useSelector(state => state.loading)
+    useEffect(() => {
+        dispatch(loadTodos())
+    }, []);
 
-const dispatch = useDispatch();
-
-  useEffect( () => {
-    dispatch(loadTodos())
-      }, []);
-
-  return (
-<div>
-  Список дел:
-  {loading ? 'идет загрузка...' : (todos.map(todo => {
     return (
         <div>
-          {todo.title}
+            Список дел:
+            {loading ? 'идет загрузка...' : (todos.map(todo => {
+                return (
+                    <div>
+                        {todo.title}
+                    </div>
+                )
+            }))}
         </div>
-    )
-  }))}
-  </div>
-  );
+    );
 }
 
 export default App;
