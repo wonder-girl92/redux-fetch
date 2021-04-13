@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {loadTodos} from "./actions";
 import {useEffect} from "react";
-
+import './App.css'
 
 function App() {
     const todos = useSelector(state => state.todos);
@@ -13,7 +13,7 @@ function App() {
     }, []);
 
     return (
-        <div>
+        <div className="main">
             Список дел:
             {loading ? 'идет загрузка...' : (todos.map(todo => {
                 return (
